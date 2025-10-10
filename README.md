@@ -61,3 +61,5 @@ AZURE_CLIENT_SECRET=<your-password>
 KEY_VAULT_NAME=kv-demo-playground
 
 Then run the app normally.
+
+update readme
