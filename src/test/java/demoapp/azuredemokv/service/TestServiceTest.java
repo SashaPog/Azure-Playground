@@ -19,14 +19,4 @@ class TestServiceTest {
         long result = testService.multiply(a, b);
         assertEquals(sumMultiply, result);
     }
-
-    @Test
-    void testMultiply_failedTest() {
-        long a = 2;
-        long b = 2;
-        long sumMultiply = 5;
-        long result = testService.multiply(a, b);
-        assertEquals(sumMultiply, result);
-    }
-
 }
