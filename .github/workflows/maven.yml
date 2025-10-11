@@ -34,3 +34,14 @@ jobs:
         AZURE_SECRET_ID: ${{ secrets.AZURE_SECRET_ID }}
         AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
       run: mvn -B package --file pom.xml
+
+    - name: Run tests
+      run: mvn -B test
+
+    - name: Test Reporter
+      uses: dorny/test-reporter@v1.5.0
+      if: success() || failure()
+      with:
+        name: Tests Report
+        path: target/surefire-reports/*.xml
+        reporter: java-junit
