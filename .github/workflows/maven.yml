@@ -6,7 +6,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Java CI with Maven
+name: CI
 
 on:
   push:
@@ -14,10 +14,21 @@ on:
   pull_request:
     branches: [ "main" ]
 
+permissions:
+  checks: write
+  pull-requests: write
+  contents: read
+
 jobs:
   build:
 
     runs-on: ubuntu-latest
+
+    env:
+      AZURE_KEY_VAULT_URL: ${{ secrets.AZURE_KEY_VAULT_URL }}
+      AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      AZURE_SECRET_ID: ${{ secrets.AZURE_SECRET_ID }}
+      AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
 
     steps:
     - uses: actions/checkout@v4
@@ -28,11 +39,6 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      env:
-        AZURE_KEY_VAULT_URL: ${{ secrets.AZURE_KEY_VAULT_URL }}
-        AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-        AZURE_SECRET_ID: ${{ secrets.AZURE_SECRET_ID }}
-        AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
       run: mvn -B package --file pom.xml
 
     - name: Run tests
