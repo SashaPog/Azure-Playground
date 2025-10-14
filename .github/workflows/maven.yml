@@ -36,6 +36,8 @@ jobs:
       run: mvn clean install
 
     - name: Run tests
+      # we can change to this
+      # try wit mvn -B package --file pom.xml
       run: mvn -B test
 
     - name: Test Reporter
@@ -46,4 +48,4 @@ jobs:
         path: target/surefire-reports/*.xml
         reporter: java-junit
 
-        # add CodeRabbit Add Sonar
+        # Add Sonar
