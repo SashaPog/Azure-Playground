@@ -40,7 +40,6 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         run: |
-          git fetch --unshallow
           mvn clean install org.jacoco:jacoco-maven-plugin:prepare-agent
           mvn sonar:sonar \
             -Dsonar.projectKey=SashaPog_Azure-Playground \
