@@ -9,8 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @Slf4j
 @SpringBootApplication
 public class AzureDemoKvApplication {
-    @Value("${greencity.keyvault.secret}")
-    private String secretValue;
     @Value("${greencity.secret.name}")
     private String secretName;
 
@@ -20,7 +18,6 @@ public class AzureDemoKvApplication {
 
     @PostConstruct
     public void logSecret() {
-        log.info("Secret from KV = {}", secretValue);
         log.info("Secret name = {}", secretName);
     }
 }
